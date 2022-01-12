@@ -1,8 +1,19 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 const Apod = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const [picture, setPicture] = useState([]);
+
+  // styles
+  const Container = styled.div`
+    width: 80%;
+  `;
+  const Image = styled.img`
+    width: 80rem;
+    height: 30rem;
+    object-fit: contain;
+  `;
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -13,12 +24,12 @@ const Apod = () => {
       setPicture(result.url);
     };
     fetchApi();
-  }, []);
+  }, [API_KEY]);
 
   return (
-    <div>
-      <img src={picture} alt="Astronomy picture of the day" />
-    </div>
+    <Container>
+      <Image src={picture} alt="Astronomy picture of the day" />
+    </Container>
   );
 };
 export default Apod;
