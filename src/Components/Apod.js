@@ -7,12 +7,17 @@ const Apod = () => {
 
   // styles
   const Container = styled.div`
-    width: 80%;
+    border: 5px solid black;
+    padding: 1rem;
+    display: flex;
   `;
-  const Image = styled.img`
-    width: 80rem;
-    height: 30rem;
+  const HeroImage = styled.img`
+    width: 25rem;
+    height: 25rem;
     object-fit: contain;
+  `;
+  const Herotext = styled.div`
+    padding-left: 2rem;
   `;
 
   useEffect(() => {
@@ -21,14 +26,18 @@ const Apod = () => {
         `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`
       );
       const result = await response.json();
-      setPicture(result.url);
+      setPicture(result);
     };
     fetchApi();
   }, [API_KEY]);
 
   return (
     <Container>
-      <Image src={picture} alt="Astronomy picture of the day" />
+      <HeroImage src={picture.url} alt="Astronomy picture of the day" />
+      <Herotext>
+        <h3>{picture.title}</h3>
+        <div>{picture.explanation}</div>
+      </Herotext>
     </Container>
   );
 };
