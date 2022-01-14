@@ -8,16 +8,14 @@ const PictureGrid = () => {
   //   styles
   const FlexContainer = styled.div`
     display: flex;
-    padding: 5rem;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 3rem;
   `;
   const Cards = styled.div`
-    /* border: 1px solid salmon; */
     background-color: #fff;
     padding: 0.8rem;
     border-radius: 4px;
-    /* width: 10rem; */
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     &:hover {
@@ -28,14 +26,22 @@ const PictureGrid = () => {
     width: 20rem;
     height: 20rem;
   `;
-  const ImageCaption = styled.div`
-    /* color: goldenrod; */
+  const ImageInfo = styled.div`
+    white-space: nowrap;
+    margin: 0.5rem;
+    font-weight: bold;
+    width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  `;
+  const ImageDate = styled.div`
+    font-weight: 100;
   `;
 
   useEffect(() => {
     const fetchApi = async () => {
       const response = await fetch(
-        `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=20`
+        `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=30`
       );
       const result = await response.json();
       setPictures(result);
@@ -50,7 +56,10 @@ const PictureGrid = () => {
           <div key={i.date}>
             <Cards>
               <FlexImages src={i.url} alt={"Picture of " + i.title} />
-              <ImageCaption>{i.title}</ImageCaption>
+              <ImageInfo>
+                {i.title}
+                <ImageDate>{i.date}</ImageDate>
+              </ImageInfo>
             </Cards>
           </div>
         );
