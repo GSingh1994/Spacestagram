@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import LikeBtn from "./LikeBtn";
 const Hero = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -40,6 +41,7 @@ const Hero = () => {
         <h3>{picture.title}</h3>
         <div>{picture.explanation}</div>
       </Herotext>
+      <LikeBtn />
     </Container>
   );
 };

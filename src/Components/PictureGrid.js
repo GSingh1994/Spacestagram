@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import LikeBtn from "./LikeBtn";
 
 const PictureGrid = () => {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -25,14 +26,20 @@ const PictureGrid = () => {
   const FlexImages = styled.img`
     width: 20rem;
     height: 20rem;
+    user-select: none;
   `;
   const ImageInfo = styled.div`
-    white-space: nowrap;
     margin: 0.5rem;
     font-weight: bold;
+
+    display: flex;
+    justify-content: space-between;
+  `;
+  const ImageTitle = styled.div`
     width: 15rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   `;
   const ImageDate = styled.div`
     font-weight: 100;
@@ -57,8 +64,12 @@ const PictureGrid = () => {
             <Cards>
               <FlexImages src={i.url} alt={"Picture of " + i.title} />
               <ImageInfo>
-                {i.title}
-                <ImageDate>{i.date}</ImageDate>
+                <div>
+                  <ImageTitle> {i.title}</ImageTitle>
+                  <ImageDate>{i.date}</ImageDate>
+                </div>
+
+                <LikeBtn />
               </ImageInfo>
             </Cards>
           </div>
