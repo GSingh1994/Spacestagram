@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import "@fontsource/roboto";
 
 // Hero Component
 export const HeroContainer = styled.div`
@@ -6,6 +7,9 @@ export const HeroContainer = styled.div`
   padding: 1rem;
   display: flex;
   margin-bottom: 4rem;
+  font-family: "Roboto";
+  letter-spacing: 1px;
+  line-height: 1.3rem;
 `;
 export const HeroImage = styled.img`
   width: 25rem;
@@ -23,6 +27,7 @@ export const FlexContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 3rem;
+  font-family: "Roboto";
 `;
 export const Cards = styled.div`
   background-color: #fff;
